@@ -1,0 +1,2 @@
+# Copy to terraform.tfvars (git-ignored; OpenTofu loads it automatically) and fill in.
+ssh_allowed_cidr = "203.0.113.7/32" # your public IP, /32 = that single address

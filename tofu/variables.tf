@@ -83,9 +83,14 @@ variable "ssh_public_key_path" {
 }
 
 variable "ssh_allowed_cidr" {
-  description = "Source CIDR allowed to reach SSH (port 22). Narrow this to your own IP if you can."
+  description = "Source CIDR allowed to reach SSH (port 22). Set it in terraform.tfvars (git-ignored); see terraform.tfvars.example."
   type        = string
-  default     = "0.0.0.0/0"
+  # No default: the plan fails rather than opening SSH to the internet.
+
+  validation {
+    condition     = can(cidrhost(var.ssh_allowed_cidr, 0)) && var.ssh_allowed_cidr != "0.0.0.0/0"
+    error_message = "ssh_allowed_cidr must be a valid CIDR such as 203.0.113.7/32, and not 0.0.0.0/0."
+  }
 }
 
 variable "existing_subnet_id" {
