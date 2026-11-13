@@ -3,3 +3,10 @@
 config
 *.key
 id_*
+
+# OpenTofu: state holds instance details and IPs; tfvars may hold OCIDs
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+crash.log
