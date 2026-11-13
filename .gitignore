@@ -1,0 +1,5 @@
+# Never commit OCI credentials or keys
+*.pem
+config
+*.key
+id_*
